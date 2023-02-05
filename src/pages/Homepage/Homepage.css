@@ -1,0 +1,23 @@
+
+.search-input{
+    position: absolute;
+    top: 20px;
+}
+
+.top-tracks {
+    display: grid;
+    gap: 20px;
+}
+
+.top-tracks-row {
+    justify-content: space-between;
+}
+
+.top-tracks-row .track-details {
+    gap: 20px;
+}
+
+.top-tracks-row .track-details .track-details-bottom{
+    flex-direction: column;
+    justify-content: space-between;
+}

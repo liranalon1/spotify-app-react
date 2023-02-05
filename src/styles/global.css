@@ -1,0 +1,41 @@
+.container {
+    max-width: 1920px;
+    width: 100%;
+    padding: 0 30px;
+}
+
+a, button {
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.flex{
+    display:flex;    
+}
+
+.grid{
+    display:grid;
+}
+
+.btn{
+    width: fit-content;
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+}
+
+.text-elipsis{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+h2.list-title{
+    font-size: 24px;   
+    margin: 50px 0 24px;
+}
