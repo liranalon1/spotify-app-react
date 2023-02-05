@@ -1,4 +1,4 @@
-import './Artists.css';
+import './Artists.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navigation from "../../components/Navigation/Navigation";

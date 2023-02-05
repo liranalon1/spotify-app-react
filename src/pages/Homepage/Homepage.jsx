@@ -1,10 +1,12 @@
-import "./Homepage.css"
+import "./Homepage.scss"
 import { context } from "../../App";
-import dayjs from 'dayjs';
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navigation from "../../components/Navigation/Navigation";
 import Search from "../../components/Search/Search";
+import UsersTopArtists from "../../components/UsersTopArtists/UsersTopArtists";
+import TopTracks from "../../components/TopTracks/TopTracks";
+import Cards from "../../components/Cards/Cards";
 import { callAPI } from "../../services/api";
 
 export default function Homepage() {
@@ -18,7 +20,8 @@ export default function Homepage() {
         }
     }
     const [searchValue, setSearchValue] = useState("");
-    const [usersTopItems, setUsersTopItems] = useState([]);
+    const [topArtists, setTopArtists] = useState([]);
+    const [noResults, setNoResults] = useState(false);
     const [topTracks, setTopTracks] = useState([]);
     const [albums, setAlbums] = useState([]);
     const [relatedArtists, setRelatedArtists] = useState([]);
@@ -33,7 +36,7 @@ export default function Homepage() {
 
     useEffect(() => {
         if(searchValue === ""){
-            getUsersTopItems({type:"artists", params: apiParams})
+            getUsersTopArtists({type:"artists", params: apiParams})
         }else{
             handleSearch();
         }
@@ -44,14 +47,14 @@ export default function Homepage() {
         getArtistID({value: searchValue, params: apiParams});
     }
 
-    function getUsersTopItems({type, params}){
+    function getUsersTopArtists({type, params}){
         callAPI({
             url: `v1/me/top/${type}`, 
             params: params
         })
         .then((res) => {
             if(res.status === 200){
-                setUsersTopItems(res.data.items);
+                setTopArtists(res.data.items);
             }else{
                 console.log(res);
                 if(res.data.error.message === "The access token expired"){
@@ -69,9 +72,15 @@ export default function Homepage() {
         })
         .then((res) => {
             if(res.status === 200){
-                getArtistTopTracks({params: params, id: res.data.artists.items[0].id});
-                getArtistAlbums({params: params, id: res.data.artists.items[0].id});
-                getRelatedArtists({params: params, id: res.data.artists.items[0].id});
+                if(res.data.artists.items.length){
+                    setNoResults(false);
+                    getArtistTopTracks({params: params, id: res.data.artists.items[0]?.id});
+                    getArtistAlbums({params: params, id: res.data.artists.items[0]?.id});
+                    getRelatedArtists({params: params, id: res.data.artists.items[0]?.id});
+                }else{
+                    setNoResults(true);
+                    setLoading(false);
+                }
             }else{
                 console.log(res);
                 if(res.data.error.message === "The access token expired"){
@@ -136,131 +145,30 @@ export default function Homepage() {
         });
     }
 
+    function noResultsTemplate() {
+        return <div className="no-results">
+            <h1>No results found for {searchValue}</h1>
+            <p>Please make sure your words are spelled correctly or use less or different keywords.</p>
+        </div>
+    }
+
     return (
         <>
             <Navigation/>
             <div className="container">
                 <Search placeholder="What do you want to listen to?" value={searchValue} change={setSearchValue} />
-
-
-                { searchValue === "" ?
-                    <>
-                    <h2 className="list-title">My Top Artists</h2>
-                    <div className="cards-wrapper">
-                    {
-                        usersTopItems.length ? 
-                        usersTopItems
-                        .map((item, index) => {
-                            return <div className="card" key={item.id}>
-                                <div className="cover">
-                                    <img src={item.images[0]?.url} width="150" height="150" alt={item.name} />
-                                    <div className="play-icon">
-                                        <svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon"><path d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
-                                    </div>
-                                </div>
-                                <div className="card-content">
-                                    <h4 className="text-elipsis">{item.name}</h4>
-                                    <p>{item.type}</p>
-                                </div>
-                            </div>
-                        }) : null
-                    }
-                    </div>
-                    </>
+                {
+                    noResults ? noResultsTemplate() : 
+                    searchValue === "" 
+                    ?
+                        <UsersTopArtists topArtists={topArtists} />
                     :
-
-
-
-                    <>
-                    <h2 className="list-title">Top Tracks</h2>
-                    <div className="top-tracks">
-                        {
-                            topTracks.length ? 
-                            topTracks.slice(0, 5)
-                            .map((item, index) => {
-                                return <div className="top-tracks-row flex" key={item.key}>
-                                    <div className="track-details flex">
-                                        <div className="track-img">
-                                            <img src={item.album.images[2]?.url} width="40" height="40" alt={item.name} />
-                                        </div>
-                                        <div className="track-details-bottom flex">
-                                            <div className="track-name">{item.name}</div>
-                                            <div className="track-artists">{item.artists.map( artist => artist.name ).join(', ')}</div>
-                                        </div>
-                                    </div>
-                                    <div className="track-duration">{dayjs(item.duration_ms).format("HH:mm:ss")}</div>
-                                </div>
-                            }) : null
-                        }
-                    </div>
-    
-    
-    
-                    <h2 className="list-title">Albums</h2>
-                    <div className="cards-wrapper">
-                    {
-                        albums.length ? 
-                        albums
-                        .map((item, index) => {
-                            return <div className="card" key={item.id}>
-                                <div className="cover">
-                                    <img src={item.images[0]?.url} width="150" height="150" alt={item.name} />
-                                    <div className="play-icon">
-                                        <svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon"><path d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
-                                    </div>
-                                </div>
-                                <div className="card-content">
-                                    <h4 className="text-elipsis">{item.name}</h4>
-                                    <p>{dayjs(item.release_date).year()} • <a href="/artist/06HL4z0CvFAxyc27GXpf02">{item.artists[0].name}</a></p>
-                                </div>
-                            </div>
-                        }) : null
-                    }
-                    </div>
-    
-    
-    
-    
-    
-                    <h2 className="list-title">Related Artists</h2>
-                    <div className="cards-wrapper">
-                    {
-                        relatedArtists.length ? 
-                        relatedArtists
-                        .map((item, index) => {
-                            return <div className="card" key={item.id}>
-                                <div className="cover">
-                                    <img src={item.images[0]?.url} width="150" height="150" alt={item.name} />
-                                    <div className="play-icon">
-                                        <svg role="img" height="24" width="24" aria-hidden="true" viewBox="0 0 24 24" data-encore-id="icon"><path d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
-                                    </div>
-                                </div>
-                                <div className="card-content">
-                                    <h4 className="text-elipsis">{item.name}</h4>
-                                    <p>{item.type}</p>
-                                </div>
-                            </div>
-                        }) : null
-                    }
-                    </div>
-
-                    </>
-
-
-                    
+                        <>
+                        <TopTracks topTracks={topTracks} />
+                        <Cards title="Albums" items={albums} />
+                        <Cards title="Related Artists" items={relatedArtists} />
+                        </>
                 }
-                
-
-
-
-
-
-
-
-
-
-               
-
             </div>  
         </>
     )

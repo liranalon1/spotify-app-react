@@ -1,0 +1,17 @@
+.top-tracks {
+    display: grid;
+    gap: 20px;
+
+    .top-tracks-row {
+        justify-content: space-between;
+
+        .track-details {
+            gap: 20px;
+
+            .track-details-bottom{
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+    }
+}

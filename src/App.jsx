@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { useState, createContext } from "react";
 import Loader from "./components/Loader/Loader";
 import Login from "./pages/Login/Login";

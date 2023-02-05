@@ -1,4 +1,4 @@
-import './Playlists.css';
+import './Playlists.scss';
 import { context } from "../../App";
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
