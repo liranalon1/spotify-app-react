@@ -2,15 +2,12 @@ import './Playlists.scss';
 import { context } from "../../App";
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Search from "../../components/Search/Search";
 import { callAPI } from "../../services/api";
 // const PlaylistAPI = `${baseAPI}/v1/playlists/${playlist_id}`;
 
 export default  function Playlists() {
-    const { setLoading } = useContext(context);
+    const { token, setLoading, searchItem } = useContext(context);
     const navigate = useNavigate();
-    const token = localStorage.getItem("token");
-    const [searchValue, setSearchValue] = useState("");
     const [playListsData, setPlayListsData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
 
@@ -24,10 +21,10 @@ export default  function Playlists() {
 
     useEffect(() => {
         setFilteredData(playListsData.filter((item, index) => {
-            return item.name.toLowerCase().includes(searchValue.toLowerCase());
+            return item.name.toLowerCase().includes(searchItem.toLowerCase());
             // return item.id === getPlaylistsData(item.id);
         }));
-    }, [searchValue]);
+    }, [searchItem]);
 
     function getAllPlaylistsData() {
         setLoading(true);
@@ -59,7 +56,6 @@ export default  function Playlists() {
     return (
         <div id="playlists-page">
             <div className="container">
-                <Search placeholder="Search for playlists songs" value={searchValue} change={setSearchValue} />
                 <h2 className="list-title">Playlists</h2>
                 <div className="cards-wrapper">
                     {

@@ -2,23 +2,20 @@ import "./Homepage.scss"
 import { context } from "../../App";
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Search from "../../components/Search/Search";
 import NoResults from "../../components/NoResults/NoResults";
 import TopTracks from "../../components/TopTracks/TopTracks";
 import Cards from "../../components/Cards/Cards";
 import { callAPI } from "../../services/api";
 
 export default function Homepage() {
-    const token = localStorage.getItem("token");
     const navigate = useNavigate();
-    const { setLoading } = useContext(context);
+    const { token, setLoading, searchItem } = useContext(context);
     const apiParams = {
         method: "get",
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-    const [searchValue, setSearchValue] = useState("");
     const [topArtists, setTopArtists] = useState([]);
     const [noResults, setNoResults] = useState(false);
     const [topTracks, setTopTracks] = useState([]);
@@ -34,16 +31,16 @@ export default function Homepage() {
     }, []);
 
     useEffect(() => {
-        if(searchValue === ""){
+        if(searchItem === ""){
             getUsersTopArtists({type:"artists", params: apiParams})
         }else{
             handleSearch();
         }
-    }, [searchValue]);
+    }, [searchItem]);
 
     function handleSearch() {
         setLoading(true);
-        getArtistID({value: searchValue, params: apiParams});
+        getArtistID({value: searchItem, params: apiParams});
     }
 
     function getUsersTopArtists({type, params}){
@@ -147,17 +144,12 @@ export default function Homepage() {
     return (
         <div id="homepage-page">
             <div className="container">
-                <Search placeholder="What do you want to listen to?" value={searchValue} change={setSearchValue} />
                 {
                     noResults 
-                    ? 
-                    <NoResults value={searchValue}/>
-                    : 
-                    searchValue === "" 
-                    ?
-                        <Cards title="My Top Artists" items={topArtists} />
-                    :
-                        <>
+                    ? <NoResults value={searchItem}/>
+                    : searchItem === "" 
+                    ? <Cards title="My Top Artists" items={topArtists} />
+                    :   <>
                         <TopTracks topTracks={topTracks} />
                         <Cards title="Albums" items={albums} />
                         <Cards title="Related Artists" items={relatedArtists} />

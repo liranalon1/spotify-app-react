@@ -1,5 +1,6 @@
 import './Login.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { context } from "../../App";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../components/Logo/Logo";
 
@@ -10,7 +11,7 @@ const scopes = ["playlist-read-private", "user-follow-read", "user-top-read"];
 const scopesParams = scopes.join("%20");
 
 export default function Login() {
-    const [token, setToken] = useState("");
+    const { token, setToken } = useContext(context);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -30,20 +31,10 @@ export default function Login() {
         window.location = `${authAPI}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopesParams}&response_type=token&show_dialog=true`;
     }
     
-    function handleLogout() {
-        setToken("");
-        localStorage.removeItem("token");
-    }
-    
     return (
         <div id="login-page">
             <a href="/login"><Logo/></a>
-
-            {!token ? 
-            <button className="btn" onClick={handleLogin}>Login</button>
-            :
-            <button onClick={handleLogout}>Logout</button>
-            }    
+            <button className="btn" onClick={handleLogin}>Login</button>    
         </div>   
     )
 }

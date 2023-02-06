@@ -1,12 +1,15 @@
 import "./UserMenu.scss";
-import { useNavigate, useLocation } from "react-router-dom";
+import { context } from "../../App";
+import { useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 
 export default function UserMenu() {
+    const { setToken } = useContext(context);
     const navigate = useNavigate();
-    const location = useLocation();
 
     function handleLogout() {
       localStorage.removeItem("token");
+      setToken("");
       navigate("/login");
     }
 
