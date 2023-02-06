@@ -4,13 +4,18 @@ header{
     padding-bottom: 20px;
 }
 
+header .container {
+    justify-content: space-between;
+    align-items: center;
+}
+
 .spotify-logo{
     width: 130px;
     cursor: pointer;
 }
 
 .navigation{
-    align-items: center;
+    margin-inline-end: auto;
     gap: 40px;
     
 }

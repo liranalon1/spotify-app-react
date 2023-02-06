@@ -19,7 +19,7 @@ export default function CardItem({item, index, title}) {
                     <p>{dayjs(item.release_date).year()} • <a href="/artist/06HL4z0CvFAxyc27GXpf02">{item.artists[0].name}</a></p>
                     :
                     <p>{item.type}</p>
-                }  
+                }
             </div>
         </div>        
         </>

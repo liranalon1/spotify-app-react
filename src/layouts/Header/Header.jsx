@@ -1,10 +1,10 @@
+import './Header.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
-import './Navigation.css';
 import Logo from "../../components/Logo/Logo";
 import Search from "../../components/Search/Search";
 
-export default function Navigation() {
+export default function Header() {
     const [searchValue, setSearchValue] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
@@ -28,7 +28,9 @@ export default function Navigation() {
                         </ul>  
                     </div>
                     <Search placeholder="What do you want to listen to?" value={searchValue} change={setSearchValue} />    
-                    
+                    <div className="user-widget">
+                       my profile 
+                    </div>
                 </div>
             </header>     
         </>

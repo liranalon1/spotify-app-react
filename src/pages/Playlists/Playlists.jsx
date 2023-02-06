@@ -2,7 +2,7 @@ import './Playlists.scss';
 import { context } from "../../App";
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navigation from "../../components/Navigation/Navigation";
+import Header from "../../layouts/Header/Header";
 import Search from "../../components/Search/Search";
 import { callAPI } from "../../services/api";
 // const PlaylistAPI = `${baseAPI}/v1/playlists/${playlist_id}`;
@@ -72,7 +72,7 @@ export default  function Playlists() {
 
     return (
         <>
-            <Navigation/>
+            <Header/>
             <div className="container">
                 <Search placeholder="Search for playlists songs" value={searchValue} change={setSearchValue} />
                 <h2 className="list-title">Playlists</h2>

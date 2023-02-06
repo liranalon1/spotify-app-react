@@ -2,9 +2,9 @@ import "./Homepage.scss"
 import { context } from "../../App";
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navigation from "../../components/Navigation/Navigation";
+import Header from "../../layouts/Header/Header";
 import Search from "../../components/Search/Search";
-import UsersTopArtists from "../../components/UsersTopArtists/UsersTopArtists";
+import NoResults from "../../components/NoResults/NoResults";
 import TopTracks from "../../components/TopTracks/TopTracks";
 import Cards from "../../components/Cards/Cards";
 import { callAPI } from "../../services/api";
@@ -145,23 +145,17 @@ export default function Homepage() {
         });
     }
 
-    function noResultsTemplate() {
-        return <div className="no-results">
-            <h1>No results found for {searchValue}</h1>
-            <p>Please make sure your words are spelled correctly or use less or different keywords.</p>
-        </div>
-    }
-
     return (
         <>
-            <Navigation/>
+            <Header/>
             <div className="container">
                 <Search placeholder="What do you want to listen to?" value={searchValue} change={setSearchValue} />
                 {
-                    noResults ? noResultsTemplate() : 
+                    noResults ? <NoResults value={searchValue}/>
+                    : 
                     searchValue === "" 
                     ?
-                        <UsersTopArtists topArtists={topArtists} />
+                        <Cards title="My Top Artists" items={topArtists} />
                     :
                         <>
                         <TopTracks topTracks={topTracks} />
