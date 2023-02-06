@@ -2,7 +2,6 @@ import "./Homepage.scss"
 import { context } from "../../App";
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from "../../layouts/Header/Header";
 import Search from "../../components/Search/Search";
 import NoResults from "../../components/NoResults/NoResults";
 import TopTracks from "../../components/TopTracks/TopTracks";
@@ -147,11 +146,12 @@ export default function Homepage() {
 
     return (
         <div id="homepage-page">
-            <Header/>
             <div className="container">
                 <Search placeholder="What do you want to listen to?" value={searchValue} change={setSearchValue} />
                 {
-                    noResults ? <NoResults value={searchValue}/>
+                    noResults 
+                    ? 
+                    <NoResults value={searchValue}/>
                     : 
                     searchValue === "" 
                     ?

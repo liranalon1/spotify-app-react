@@ -5,6 +5,7 @@ header{
     background: #121212;    
     align-items: center;
     padding: 20px 0;
+    transition: 0.3s;
 
     .container {
         justify-content: space-between;
@@ -12,9 +13,22 @@ header{
     }
 
     .spotify-logo{
-        width: 130px;
+        width: 120px;
         cursor: pointer;
+        transition: 0.3s;
     }
+
+    //  header is active
+    &.active{
+        padding: 12px 0;
+        background-color: #181818;
+        box-shadow: 0 8px 20px -4px hsl(0deg 0% 5%);
+
+        .spotify-logo {
+            width: 100px;
+            height: 30px;
+        }
+    }    
 }
 
 .navigation{

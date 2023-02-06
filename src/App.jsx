@@ -1,6 +1,7 @@
 import './App.scss';
 import { useState, createContext } from "react";
 import Loader from "./components/Loader/Loader";
+import Header from "./layouts/Header/Header";
 import Login from "./pages/Login/Login";
 import Homepage from "./pages/Homepage/Homepage";
 import Playlists from "./pages/Playlists/Playlists";
@@ -16,6 +17,7 @@ export default function App() {
       { loading ? <Loader /> : null }
       
       <context.Provider value={{ setLoading }}>
+        <Header/>
         <Routes>
           <Route exact path="*" element={<Login/>}/>
           <Route exact path="/login" element={<Login/>}/>
