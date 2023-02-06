@@ -24,12 +24,13 @@ export default function Header() {
                             <li onClick={ () => navigate("/")} className={location.pathname === "/" ? "active" : null}>Home</li>
                             <li onClick={ () => navigate("/playlists")} className={location.pathname === "/playlists" ? "active" : null}>Playlists</li>
                             <li onClick={ () => navigate("/artists")} className={location.pathname === "/artists" ? "active" : null}>Artists</li>
-                            <li onClick={handleLogout}>Logout</li>
                         </ul>  
                     </div>
                     <Search placeholder="What do you want to listen to?" value={searchValue} change={setSearchValue} />    
                     <div className="user-widget">
-                       my profile 
+                        <ul className="flex">
+                            <li onClick={handleLogout}>Logout</li>
+                        </ul>
                     </div>
                 </div>
             </header>     
