@@ -2,6 +2,7 @@ import './App.scss';
 import { useState, useEffect, createContext } from "react";
 import Loader from "./components/Loader/Loader";
 import Header from "./layouts/Header/Header";
+import Footer from "./layouts/Footer/Footer";
 import Login from "./pages/Login/Login";
 import Homepage from "./pages/Homepage/Homepage";
 import Playlists from "./pages/Playlists/Playlists";
@@ -35,6 +36,7 @@ export default function App() {
           <Route exact path="/playlists" element={<Playlists/>}/>
           <Route exact path="/artists" element={<Artists/>}/>
         </Routes>
+        { token ? <Footer/> : null }
       </context.Provider>
     </div>
   )
