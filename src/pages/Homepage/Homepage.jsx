@@ -146,7 +146,7 @@ export default function Homepage() {
     }
 
     return (
-        <>
+        <div id="homepage-page">
             <Header/>
             <div className="container">
                 <Search placeholder="What do you want to listen to?" value={searchValue} change={setSearchValue} />
@@ -164,6 +164,6 @@ export default function Homepage() {
                         </>
                 }
             </div>  
-        </>
+        </div>
     )
 }

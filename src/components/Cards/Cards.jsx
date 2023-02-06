@@ -9,7 +9,7 @@ export default function Cards({title, items}) {
             <div className="cards-wrapper">
                 {
                     items.map((item, index) => {
-                        return <CardItem item={item} index={index} title={title}/>
+                        return <CardItem item={item} index={index} title={title} key={item.id}/>
                     })            
                 }  
             </div>        

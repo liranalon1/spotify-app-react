@@ -36,7 +36,7 @@ export default function Login() {
     }
     
     return (
-        <div className="login-page">
+        <div id="login-page">
             <a href="/login"><Logo/></a>
 
             {!token ? 

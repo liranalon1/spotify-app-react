@@ -9,12 +9,12 @@ export default  function Artists() {
     const [searchValue, setSearchValue] = useState("");
 
     return (
-        <>
+        <div id="artists-page">
             <Header/>
             <div className="container">
                 <Search placeholder="Search for playlists songs" value={searchValue} change={setSearchValue} />
                 <h2 className="list-title">Artists</h2>
             </div>
-        </>
+        </div>
     )
 }

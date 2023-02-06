@@ -54,24 +54,11 @@ export default  function Playlists() {
                 }
             }
         })
-        // axios.get(playListsAPI, {
-        //     headers:{
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // }).then((res) => {
-        //     setPlayListsData(res.data.items);
-        //     setFilteredData(res.data.items);
-        // }).catch((err) => {
-        //     console.error(err.response);
-        //     if(err.response.data.error.message === "The access token expired"){
-        //         localStorage.removeItem("token");
-        //         navigate("/login");
-        //     }
-        // });
+     
     }
 
     return (
-        <>
+        <div id="playlists-page">
             <Header/>
             <div className="container">
                 <Search placeholder="Search for playlists songs" value={searchValue} change={setSearchValue} />
@@ -91,13 +78,13 @@ export default  function Playlists() {
                                 </div>
                                 <div className="card-content">
                                     <h4 className="text-elipsis">{item.name}</h4>
-                                    <p>{item.tracks.total} Songs</p>
+                                    <p>{item.tracks.total} Tracks</p>
                                 </div>
                             </div>
                         }) : null
                     }
                 </div>
             </div>
-        </>
+        </div>
     )
 }

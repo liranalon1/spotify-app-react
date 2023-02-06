@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 export default function CardItem({item, index, title}) {
     return (
         <>
-        <div className="card" key={item.id}>
+        <div className="card">
             <div className="cover">
                 <img src={item.images[0]?.url} width="100%" height="100%" alt={item.name} />
                 <div className="play-icon">
