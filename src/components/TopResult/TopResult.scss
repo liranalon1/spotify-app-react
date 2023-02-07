@@ -1,0 +1,26 @@
+.top-result {
+    .card {
+        gap: 20px;
+        align-items: center;
+        height: 320px;
+
+        .cover {
+            width: 300px;
+            height: 100%;
+            margin: 0;
+        }
+
+        .card-content{
+            max-width: 260px;
+
+            h3{
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            p{
+                font-size: 20px;  
+            }
+        }
+    }
+}

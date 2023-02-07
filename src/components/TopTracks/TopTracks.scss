@@ -1,6 +1,4 @@
 .top-tracks {
-    display: grid;
-    gap: 20px;
 
     .top-tracks-row {
         position: relative;
@@ -11,6 +9,7 @@
         transition: background-color 0.4s;
 
         .track-details {
+            align-items: center;
             gap: 20px;
 
             .track-img{
@@ -27,6 +26,13 @@
             .track-details-bottom{
                 flex-direction: column;
                 justify-content: space-between;
+                
+                .track-name {}
+                .track-artists{
+                    color: #b3b3b3;
+                    margin-top: 5px;
+                    font-size: 14px;
+                }
             }
         }
 

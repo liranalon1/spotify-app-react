@@ -24,7 +24,11 @@
             display: block;
             width: 100%;
             box-shadow: 0 8px 20px -4px hsl(0deg 0% 5%);
-            border-radius: 5px;
+            border-radius: 50%;
+
+            &.type-album{
+                border-radius: 5px;  
+            }
         }
 
         .play-icon {

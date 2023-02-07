@@ -35,7 +35,7 @@ export default function UserMenu() {
 
     function handleLogout() {
       localStorage.removeItem("token");
-      setToken("");
+      setToken(null);
       navigate("/login");
     }
 

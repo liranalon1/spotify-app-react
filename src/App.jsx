@@ -16,7 +16,7 @@ export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   return (
-    <div className="App">
+    <div className="App flex">
       { loading ? <Loader /> : null }
       
       <context.Provider value={

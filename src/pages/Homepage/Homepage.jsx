@@ -3,6 +3,7 @@ import { context } from "../../App";
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NoResults from "../../components/NoResults/NoResults";
+import TopResult from "../../components/TopResult/TopResult";
 import TopTracks from "../../components/TopTracks/TopTracks";
 import Cards from "../../components/Cards/Cards";
 import { callAPI } from "../../services/api";
@@ -23,12 +24,10 @@ export default function Homepage() {
     const [relatedArtists, setRelatedArtists] = useState([]);
 
     useEffect(() => {
-        if( token ){
-            
-        }else{
+        if( !token ){
             navigate("/login");
         }
-    }, []);
+    }, [token]);
 
     useEffect(() => {
         if(searchItem === ""){
@@ -150,7 +149,10 @@ export default function Homepage() {
                     : searchItem === "" 
                     ? <Cards title="My Top Artists" items={topArtists} />
                     :   <>
-                        <TopTracks topTracks={topTracks} />
+                        <div className="top-results-wrapper">
+                            <TopResult topTrack={topTracks[0]} />
+                            <TopTracks topTracks={topTracks} />
+                        </div>
                         <Cards title="Albums" items={albums} />
                         <Cards title="Related Artists" items={relatedArtists} />
                         </>

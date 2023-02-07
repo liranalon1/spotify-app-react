@@ -16,15 +16,15 @@ export default function Login() {
 
     useEffect(() => {
         const hash = location.hash;
-        let token = localStorage.getItem("token");
-
-        if(hash && !token){
-            token = hash.substring(1).split("&").find(elem => elem.includes("access_token")).split("=")[1];
-            window.location.hash = "";
-            localStorage.setItem("token", token);
-            setToken(token);
+        if(token){
             navigate("/");
-        }
+        }else if(hash){
+            let tokenFromHash = hash.substring(1).split("&").find(elem => elem.includes("access_token")).split("=")[1];
+            window.location.hash = "";
+            localStorage.setItem("token", tokenFromHash);
+            setToken(tokenFromHash);
+            navigate("/");
+        }else{}
     }, []);
 
     function handleLogin() {
