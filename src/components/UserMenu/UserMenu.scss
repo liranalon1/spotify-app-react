@@ -1,0 +1,58 @@
+.user-menu{
+    position: relative;
+    font-size: 14px;
+
+    .trigger-menu{
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        .user-avater{
+            display: grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            overflow: hidden;
+            border-radius: 50%;
+            background: #282828;
+        }
+
+        .display-name{
+            max-width: 100px;
+        }
+
+        .arrow {
+            margin-top: 3px;
+        }
+    }
+
+    .dropdown-menu{
+        display: none;
+        position: absolute;
+        top: 35px;
+        right: 0;
+        flex-direction: column;
+        width: 200px;
+        background-color: #282828;
+        border-radius: 5px;
+        padding: 20px 0;
+        gap: 20px;
+        box-shadow: 0 8px 20px -4px hsl(0deg 0% 5%);
+
+        li { 
+            padding: 0 20px;
+
+            &:hover, &.active{
+                color: #1fdf64;
+            }
+
+            > a {
+                display: block;
+            }
+        }
+
+        &.active {
+            display: flex;
+        }
+    }
+}

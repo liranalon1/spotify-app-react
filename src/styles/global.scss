@@ -39,3 +39,29 @@ h2.list-title{
     font-size: 24px;   
     margin: 50px 0 24px;
 }
+
+/* arrows */
+.arrow{
+    width: 0; 
+    height: 0; 
+    &.up{
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent; 
+        border-bottom: 5px solid #fff;
+    }
+    &.down{
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #fff;
+    }
+    &.right{
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 5px solid #fff;
+    }
+    &.left{
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent; 
+        border-right: 6px solid #fff;
+    }
+}
