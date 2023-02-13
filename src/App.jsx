@@ -1,5 +1,7 @@
 import './App.scss';
 import { useState, useEffect, createContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import { useDebounce } from "./hooks/useDebounce";
 import Loader from "./components/Loader/Loader";
 import Header from "./layouts/Header/Header";
 import Footer from "./layouts/Footer/Footer";
@@ -7,13 +9,14 @@ import Login from "./pages/Login/Login";
 import Homepage from "./pages/Homepage/Homepage";
 import Playlists from "./pages/Playlists/Playlists";
 import Artists from "./pages/Artists/Artists";
-import { Routes, Route } from 'react-router-dom';
 
 export const context = createContext();
 export default function App() {
   const [loading, setLoading] = useState(false);
-  const [searchItem, setSearchItem] = useState("");
+  const [query, setQuery] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  
+  const searchQuery = useDebounce(query, 500)
 
   return (
     <div className="App flex">
@@ -22,8 +25,8 @@ export default function App() {
       <context.Provider value={
         { 
           setLoading, 
-          searchItem, 
-          setSearchItem, 
+          searchQuery, 
+          setQuery, 
           token, 
           setToken 
         }

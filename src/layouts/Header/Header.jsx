@@ -7,7 +7,7 @@ import Navigation from "../../components/Navigation/Navigation";
 import UserMenu from "../../components/UserMenu/UserMenu";
 
 export default function Header() {
-    const { searchItem, setSearchItem } = useContext(context);
+    const { query, setQuery } = useContext(context);
     const [scroll, setScroll] = useState(false);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function Header() {
                 <div className="container flex">
                     <a href="/"><Logo/></a>
                     <Navigation />
-                    <Search placeholder="What do you want to listen to?" value={searchItem} change={setSearchItem} />
+                    <Search placeholder="What do you want to listen to?" value={query} change={setQuery} />
                     <UserMenu />
                 </div>
             </header>     

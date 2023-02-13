@@ -7,7 +7,7 @@ import Cards from "../../components/Cards/Cards";
 // const PlaylistAPI = `${baseAPI}/v1/playlists/${playlist_id}`;
 
 export default  function Playlists() {
-    const { token, setLoading, searchItem } = useContext(context);
+    const { token, setLoading, query } = useContext(context);
     const navigate = useNavigate();
     const [playListsData, setPlayListsData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -22,10 +22,10 @@ export default  function Playlists() {
 
     useEffect(() => {
         setFilteredData(playListsData.filter((item, index) => {
-            return item.name.toLowerCase().includes(searchItem.toLowerCase());
+            return item.name.toLowerCase().includes(query.toLowerCase());
             // return item.id === getPlaylistsData(item.id);
         }));
-    }, [searchItem]);
+    }, [query]);
 
     function getAllPlaylistsData() {
         setLoading(true);

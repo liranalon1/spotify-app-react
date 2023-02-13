@@ -10,7 +10,7 @@ import { callAPI } from "../../services/api";
 
 export default function Homepage() {
     const navigate = useNavigate();
-    const { token, setLoading, searchItem } = useContext(context);
+    const { token, setLoading, searchQuery } = useContext(context);
     const apiParams = {
         method: "get",
         headers: {
@@ -30,16 +30,16 @@ export default function Homepage() {
     }, [token]);
 
     useEffect(() => {
-        if(searchItem === ""){
+        if(searchQuery === ""){
             getUsersTopArtists({type:"artists", params: apiParams})
         }else{
             handleSearch();
         }
-    }, [searchItem]);
+    }, [searchQuery]);
 
     function handleSearch() {
         setLoading(true);
-        getArtistID({value: searchItem, params: apiParams});
+        getArtistID({value: searchQuery, params: apiParams});
     }
 
     function getUsersTopArtists({type, params}){
@@ -145,8 +145,8 @@ export default function Homepage() {
             <div className="container">
                 {
                     noResults 
-                    ? <NoResults value={searchItem}/>
-                    : searchItem === "" 
+                    ? <NoResults value={searchQuery}/>
+                    : searchQuery === "" 
                     ? <Cards title="My Top Artists" items={topArtists} />
                     :   <>
                         <div className="top-results-wrapper">
