@@ -1,5 +1,6 @@
 import './Header.scss';
 import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import { context } from "../../App";
 import Logo from "../../components/Logo/Logo";
 import Search from "../../components/Search/Search";
@@ -9,6 +10,8 @@ import UserMenu from "../../components/UserMenu/UserMenu";
 export default function Header() {
     const { query, setQuery } = useContext(context);
     const [scroll, setScroll] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
       if (typeof window !== "undefined") {
@@ -22,7 +25,7 @@ export default function Header() {
         <>
             <header className={`header ${scroll ? "active" : ""} flex`}>
                 <div className="container flex">
-                    <a href="/"><Logo/></a>
+                    <a onClick={ () => navigate("/")}><Logo /></a>
                     <Navigation />
                     <Search placeholder="What do you want to listen to?" value={query} change={setQuery} />
                     <UserMenu />

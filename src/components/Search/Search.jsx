@@ -9,6 +9,7 @@ export default function Search({placeholder, value, change}) {
                 placeholder={placeholder}
                 value={value}
                 onChange={(e) => change(e.target.value)}
+                autoFocus
             />
         </>
     )

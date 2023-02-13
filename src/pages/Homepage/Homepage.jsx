@@ -147,7 +147,7 @@ export default function Homepage() {
                     noResults 
                     ? <NoResults value={searchQuery}/>
                     : searchQuery === "" 
-                    ? <Cards title="My Top Artists" items={topArtists} />
+                    ? <Cards title="Your Favorite Artists" items={topArtists} />
                     :   <>
                         <div className="top-results-wrapper">
                             <TopResult topTrack={topTracks[0]} />
