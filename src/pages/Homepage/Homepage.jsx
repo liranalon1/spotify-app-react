@@ -52,7 +52,7 @@ export default function Homepage() {
                 setTopArtists(res.data.items);
             }else{
                 console.log(res);
-                if(res.data.error.message === "The access token expired"){
+                if(res.status === 401){
                     localStorage.removeItem("token");
                     navigate("/login");
                 }
@@ -74,15 +74,16 @@ export default function Homepage() {
                     getRelatedArtists({params: params, id: res.data.artists.items[0]?.id});
                 }else{
                     setNoResults(true);
-                    setLoading(false);
                 }
             }else{
                 console.log(res);
-                if(res.data.error.message === "The access token expired"){
+                if(res.status === 401){
                     localStorage.removeItem("token");
                     navigate("/login");
                 }
             }
+
+            setLoading(false);
         });        
     }
 
@@ -93,14 +94,15 @@ export default function Homepage() {
         }).then((res) => {
             if(res.status === 200){
                setTopTracks(res.data.tracks);
-               setLoading(false);
             }else{
                 console.log(res);
-                if(res.data.error.message === "The access token expired"){
+                if(res.status === 401){
                     localStorage.removeItem("token");
                     navigate("/login");
                 }
             }
+
+            setLoading(false);
         });
     }
 
@@ -111,14 +113,15 @@ export default function Homepage() {
         }).then((res) => {
             if(res.status === 200){
                setAlbums(res.data.items);
-               setLoading(false);
             }else{
                 console.log(res);
-                if(res.data.error.message === "The access token expired"){
+                if(res.status === 401){
                     localStorage.removeItem("token");
                     navigate("/login");
                 }
             }
+
+            setLoading(false);
         });
     }
 
@@ -129,34 +132,39 @@ export default function Homepage() {
         }).then((res) => {
             if(res.status === 200){
                setRelatedArtists(res.data.artists);
-               setLoading(false);
             }else{
                 console.log(res);
-                if(res.data.error.message === "The access token expired"){
+                if(res.status === 401){
                     localStorage.removeItem("token");
                     navigate("/login");
                 }
             }
+
+            setLoading(false);
         });
+    }
+
+    function handleContent(){
+        if( searchQuery !== "" && noResults ){
+            return <NoResults value={searchQuery}/> 
+        } else if( searchQuery === "" ){
+            return <Cards title="Your Favorite Artists" items={topArtists} />
+        } else{
+            return <>
+            <div className="top-results-wrapper">
+                <TopResult topTrack={topTracks[0]} />
+                <TopTracks topTracks={topTracks} />
+            </div>
+            <Cards title="Albums" items={albums} />
+            <Cards title="Related Artists" items={relatedArtists} />
+            </>             
+        }  
     }
 
     return (
         <div id="homepage-page">
             <div className="container">
-                {
-                    noResults 
-                    ? <NoResults value={searchQuery}/>
-                    : searchQuery === "" 
-                    ? <Cards title="Your Favorite Artists" items={topArtists} />
-                    :   <>
-                        <div className="top-results-wrapper">
-                            <TopResult topTrack={topTracks[0]} />
-                            <TopTracks topTracks={topTracks} />
-                        </div>
-                        <Cards title="Albums" items={albums} />
-                        <Cards title="Related Artists" items={relatedArtists} />
-                        </>
-                }
+                { handleContent() }
             </div>  
         </div>
     )

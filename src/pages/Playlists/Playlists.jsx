@@ -45,7 +45,7 @@ export default  function Playlists() {
                 setLoading(false);
             }else{
                 console.log(res);
-                if(res.data.error.message === "The access token expired"){
+                if(res.status === 401){
                     localStorage.removeItem("token");
                     navigate("/login");
                 }

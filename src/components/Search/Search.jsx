@@ -8,7 +8,7 @@ export default function Search({placeholder, value, change}) {
                 type="text"
                 placeholder={placeholder}
                 value={value}
-                onChange={(e) => change(e.target.value)}
+                onChange={(e) => change(e.target.value.trim())}
                 autoFocus
             />
         </>

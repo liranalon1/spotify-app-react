@@ -1,6 +1,6 @@
 import './App.scss';
 import { useState, useEffect, createContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useDebounce } from "./hooks/useDebounce";
 import Loader from "./components/Loader/Loader";
 import Header from "./layouts/Header/Header";
@@ -12,11 +12,17 @@ import Artists from "./pages/Artists/Artists";
 
 export const context = createContext();
 export default function App() {
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   
   const searchQuery = useDebounce(query, 500)
+
+  useEffect(() => {
+    setQuery("");
+    document.querySelector(".search-input").value = "";
+  }, [location]);
 
   return (
     <div className="App flex">
