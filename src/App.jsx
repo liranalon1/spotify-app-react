@@ -19,10 +19,10 @@ export default function App() {
   
   const searchQuery = useDebounce(query, 500)
 
-  useEffect(() => {
-    setQuery("");
-    document.querySelector(".search-input").value = "";
-  }, [location]);
+  // useEffect(() => {
+  //   setQuery("");
+  //   document.querySelector(".search-input").value = "";
+  // }, [location]);
 
   return (
     <div className="App flex">

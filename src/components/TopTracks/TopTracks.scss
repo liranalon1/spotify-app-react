@@ -14,6 +14,10 @@
 
             .track-img{
                 position: relative;
+                min-width: 40px;
+                max-width: 40px;
+                height: 40px;
+
                 button{
                     opacity: 0;
                     position: absolute;
