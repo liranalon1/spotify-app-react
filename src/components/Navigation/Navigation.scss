@@ -1,0 +1,15 @@
+.navigation{
+    margin-inline-end: auto;
+    gap: 40px;
+
+    ul{
+        gap: 20px;
+        margin: 0 40px;
+
+        li {            
+            &:hover, &.active{
+                color: #1fdf64;
+            }
+        }
+    }
+}

@@ -6,6 +6,7 @@ import Logo from "../../components/Logo/Logo";
 import Search from "../../components/Search/Search";
 import Navigation from "../../components/Navigation/Navigation";
 import UserMenu from "../../components/UserMenu/UserMenu";
+import ThemeButton from "../../components/ThemeButton/ThemeButton";
 
 export default function Header() {
     const { query, setQuery } = useContext(context);
@@ -28,6 +29,7 @@ export default function Header() {
                     <a onClick={ () => navigate("/")}><Logo /></a>
                     <Navigation />
                     <Search placeholder="What do you want to listen to?" value={query} change={setQuery} />
+                    {/* <ThemeButton /> */}
                     <UserMenu />
                 </div>
             </header>     
