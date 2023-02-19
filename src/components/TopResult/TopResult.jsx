@@ -14,7 +14,7 @@ export default function TopResult({topTrack}) {
                 </div>
                 <div className="card-content">
                     <h3 className="text-elipsis">{topTrack.name}</h3>
-                    <p>{topTrack.artists.map( artist => artist.name ).join(', ')}</p>
+                    <p>{topTrack.artists.map( artist => artist.name ).join(", ")}</p>
                 </div>                
             </div>                   
         </div>
