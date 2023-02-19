@@ -7,7 +7,7 @@ import Logo from "../../components/Logo/Logo";
 const authAPI = "https://accounts.spotify.com/authorize";
 const clientId = "9c30da69732d433cbeb1ef4871e3ba2a";
 const redirectUri = "http://127.0.0.1:80/spotify-app";
-const scopes = ["playlist-read-private", "user-follow-read", "user-top-read"];
+const scopes = ["playlist-read-private", "user-follow-read", "user-top-read", "user-read-currently-playing", "user-read-playback-state"];
 const scopesParams = scopes.join("%20");
 
 export default function Login() {

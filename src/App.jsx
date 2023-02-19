@@ -18,6 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [currentTrack, setCurrentTrack] = useState({});
   
   const searchQuery = useDebounce(query, 500)
 
@@ -40,7 +41,9 @@ export default function App() {
           searchQuery, 
           setQuery, 
           token, 
-          setToken 
+          setToken,
+          currentTrack,
+          setCurrentTrack
         }
       }>
         <themeContext.Provider value={{theme, setTheme}}>

@@ -1,0 +1,19 @@
+.current-track-wrap {
+    gap: 20px;
+    align-items: center;
+    
+    .track-image {
+        width: 64px;
+        height: 64px;
+    }
+
+    .track-info {
+        h4{}
+
+        p {
+            color: #b3b3b3;
+            margin-top: 3px;
+            font-size: 14px;
+        }
+    }
+}

@@ -1,7 +1,7 @@
-import "./Homepage.scss"
+import "./Homepage.scss";
 import { context } from "../../App";
-import { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import NoResults from "../../components/NoResults/NoResults";
 import TopResult from "../../components/TopResult/TopResult";
 import TopTracks from "../../components/TopTracks/TopTracks";
