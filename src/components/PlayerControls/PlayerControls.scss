@@ -1,0 +1,11 @@
+.Player-controls{
+    gap: 20px;
+    align-items: center;
+
+    .state{
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+    }
+}
