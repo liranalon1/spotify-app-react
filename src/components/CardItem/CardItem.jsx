@@ -10,7 +10,7 @@ export default function CardItem({item, index, title}) {
     const itemIsActive = currentTrack.id === item.id && trackIsPlaying;
 
     function handleCurrentTrack({id, name, artists, image}) {
-        debugger
+        
         setCurrentTrack({
             id: id,
             name: name,
