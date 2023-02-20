@@ -19,6 +19,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [currentTrack, setCurrentTrack] = useState({});
+  const [trackIsPlaying, setTrackIsPlaying] = useState(false);
   
   const searchQuery = useDebounce(query, 500)
 
@@ -43,7 +44,9 @@ export default function App() {
           token, 
           setToken,
           currentTrack,
-          setCurrentTrack
+          setCurrentTrack,
+          trackIsPlaying,
+          setTrackIsPlaying
         }
       }>
         <themeContext.Provider value={{theme, setTheme}}>

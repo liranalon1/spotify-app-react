@@ -1,5 +1,5 @@
 import "./CurrentTrack.scss";
-import { useEffect, useContext } from "react"
+import { useEffect, useContext } from "react";
 import { context } from "../../App";
 import { callAPI } from "../../services/api";
 

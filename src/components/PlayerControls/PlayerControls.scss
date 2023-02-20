@@ -2,8 +2,18 @@
     gap: 20px;
     align-items: center;
 
+    svg {
+        color: #b3b3b3;
+        transition: 0.3s;
+        
+        &:hover {
+            color: #fff;
+        }
+    }
+
     .state{
-        svg {
+        svg{
+            color: #fff;
             width: 32px;
             height: 32px;
         }
