@@ -6,10 +6,10 @@
     transition: background-color 0.4s;
     cursor: pointer;
 
-    &:hover {
+    &:hover, &.active {
         background-color: #282828;
 
-        .cover .play-icon {
+        .cover .circle-icon {
             opacity: 1;
         }
     }
@@ -31,7 +31,7 @@
             }
         }
 
-        .play-icon {
+        .circle-icon {
             position: absolute;
             bottom: 5px;
             right: 5px;

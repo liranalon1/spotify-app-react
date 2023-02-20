@@ -4,7 +4,7 @@ import { context } from "../../App";
 import { callAPI } from "../../services/api";
 
 export default function CurrentTrack() {
-    const { token, currentTrack, setCurrentTrack } = useContext(context);
+    const { token, currentTrack, setCurrentTrack, trackIsPlaying, setTrackIsPlaying } = useContext(context);
 
     useEffect(() => {
         getCurrentTrack();
@@ -22,6 +22,7 @@ export default function CurrentTrack() {
         })
         .then((res) => {
             if(res.data !== ""){
+                setTrackIsPlaying(res.data.is_playing);
                 const {item} = res.data;
                 setCurrentTrack({
                     id: item.id,
