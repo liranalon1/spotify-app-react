@@ -7,14 +7,14 @@ import Cards from "../../components/Cards/Cards";
 // const PlaylistAPI = `${baseAPI}/v1/playlists/${playlist_id}`;
 
 export default  function Playlists() {
-    const { token, setLoading, query } = useContext(context);
+    const { token, setToken, setLoading, query } = useContext(context);
     const navigate = useNavigate();
     const [playListsData, setPlayListsData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
 
     useEffect(() => {
         if( !token ){
-            navigate("/login");
+            handleLogout();
         }else{
             getAllPlaylistsData();
         }
@@ -26,6 +26,12 @@ export default  function Playlists() {
             // return item.id === getPlaylistsData(item.id);
         }));
     }, [query]);
+
+    function handleLogout() {
+        localStorage.removeItem("token");
+        setToken(null);
+        navigate("/login");
+    }
 
     function getAllPlaylistsData() {
         setLoading(true);
@@ -46,8 +52,7 @@ export default  function Playlists() {
             }else{
                 console.log(res);
                 if(res.status === 401){
-                    localStorage.removeItem("token");
-                    navigate("/login");
+                    handleLogout();
                 }
             }
         })

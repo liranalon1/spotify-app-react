@@ -10,7 +10,7 @@ import { callAPI } from "../../services/api";
 
 export default function Homepage() {
     const navigate = useNavigate();
-    const { token, setLoading, searchQuery } = useContext(context);
+    const { token, setToken, setLoading, searchQuery } = useContext(context);
     const apiParams = {
         method: "get",
         headers: {
@@ -25,7 +25,7 @@ export default function Homepage() {
 
     useEffect(() => {
         if( !token ){
-            navigate("/login");
+            handleLogout();
         }
     }, [token]);
 
@@ -36,6 +36,12 @@ export default function Homepage() {
             handleSearch();
         }
     }, [searchQuery]);
+
+    function handleLogout() {
+        localStorage.removeItem("token");
+        setToken(null);
+        navigate("/login");
+    }
 
     function handleSearch() {
         setLoading(true);
@@ -53,8 +59,7 @@ export default function Homepage() {
             }else{
                 console.log(res);
                 if(res.status === 401){
-                    localStorage.removeItem("token");
-                    navigate("/login");
+                    handleLogout();
                 }
             }
         });
@@ -78,8 +83,7 @@ export default function Homepage() {
             }else{
                 console.log(res);
                 if(res.status === 401){
-                    localStorage.removeItem("token");
-                    navigate("/login");
+                    handleLogout();
                 }
             }
 
@@ -97,8 +101,7 @@ export default function Homepage() {
             }else{
                 console.log(res);
                 if(res.status === 401){
-                    localStorage.removeItem("token");
-                    navigate("/login");
+                    handleLogout();
                 }
             }
 
