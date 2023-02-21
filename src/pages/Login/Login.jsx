@@ -14,6 +14,7 @@ const scopes = [
     "user-read-currently-playing", 
     "user-read-playback-state",
     "user-modify-playback-state",
+    "streaming"
 ];
 const scopesParams = scopes.join("%20");
 

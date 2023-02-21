@@ -10,7 +10,6 @@ export default function CardItem({item, index, title}) {
     const itemIsActive = currentTrack.id === item.id && trackIsPlaying;
 
     function handleCurrentTrack({id, name, artists, image}) {
-        
         setCurrentTrack({
             id: id,
             name: name,
@@ -18,7 +17,7 @@ export default function CardItem({item, index, title}) {
             image: image
         });
 
-        setTrackIsPlaying(!trackIsPlaying);
+        itemIsActive ? setTrackIsPlaying(false) : setTrackIsPlaying(true);
     }
 
     return (
