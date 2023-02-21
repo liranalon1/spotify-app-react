@@ -1,5 +1,5 @@
 import "./Cards.scss";
-import CardItem from "../CardItem/CardItem";
+import CardItem from "@/components/CardItem/CardItem";
 
 export default function Cards({title, items}) {
     return (

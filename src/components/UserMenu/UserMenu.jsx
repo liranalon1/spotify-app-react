@@ -1,8 +1,8 @@
 import "./UserMenu.scss";
-import { context } from "../../App";
+import { context } from "@/App";
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
-import { callAPI } from "../../services/api";
+import { callAPI } from "@/services/api";
 
 export default function UserMenu() {
     const navigate = useNavigate();

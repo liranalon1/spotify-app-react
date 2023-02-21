@@ -1,7 +1,7 @@
 import "./CardItem.scss";
 import dayjs from 'dayjs';
 import { useContext } from "react";
-import { context } from "../../App";
+import { context } from "@/App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 

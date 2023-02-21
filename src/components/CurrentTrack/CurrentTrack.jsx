@@ -1,7 +1,7 @@
 import "./CurrentTrack.scss";
 import { useEffect, useContext } from "react";
-import { context } from "../../App";
-import { callAPI } from "../../services/api";
+import { context } from "@/App";
+import { callAPI } from "@/services/api";
 
 export default function CurrentTrack() {
     const { token, currentTrack, setCurrentTrack, trackIsPlaying, setTrackIsPlaying } = useContext(context);

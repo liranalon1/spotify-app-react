@@ -1,7 +1,7 @@
 import "./Volume.scss";
 import { useContext } from "react";
-import { context } from "../../App";
-import { callAPI } from "../../services/api";
+import { context } from "@/App";
+import { callAPI } from "@/services/api";
 
 export default function Volume() {
     const { token } = useContext(context);

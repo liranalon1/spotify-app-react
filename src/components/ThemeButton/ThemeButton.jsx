@@ -1,5 +1,5 @@
 import "./ThemeButton.scss";
-import { themeContext } from "../../App";
+import { themeContext } from "@/App";
 import { useContext } from 'react';
 
 export default function ThemeButton() {

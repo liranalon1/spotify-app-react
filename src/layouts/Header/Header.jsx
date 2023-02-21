@@ -1,12 +1,12 @@
 import './Header.scss';
 import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
-import { context } from "../../App";
-import Logo from "../../components/Logo/Logo";
-import Search from "../../components/Search/Search";
-import Navigation from "../../components/Navigation/Navigation";
-import UserMenu from "../../components/UserMenu/UserMenu";
-import ThemeButton from "../../components/ThemeButton/ThemeButton";
+import { context } from "@/App";
+import Logo from "@/components/Logo/Logo";
+import Search from "@/components/Search/Search";
+import Navigation from "@/components/Navigation/Navigation";
+import UserMenu from "@/components/UserMenu/UserMenu";
+import ThemeButton from "@/components/ThemeButton/ThemeButton";
 
 export default function Header() {
     const { query, setQuery } = useContext(context);

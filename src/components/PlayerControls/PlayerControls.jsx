@@ -1,9 +1,9 @@
 import "./PlayerControls.scss";
 import { useContext } from "react";
-import { context } from "../../App";
+import { context } from "@/App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay, faCirclePause, faShuffle, faForwardStep, faBackwardStep, faRotateRight } from "@fortawesome/free-solid-svg-icons";
-import { callAPI } from "../../services/api";
+import { callAPI } from "@/services/api";
 
 export default function PlayerControls() {
     const { token, trackIsPlaying, setTrackIsPlaying, setCurrentTrack } = useContext(context);

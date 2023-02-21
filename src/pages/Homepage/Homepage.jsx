@@ -1,12 +1,12 @@
 import "./Homepage.scss";
-import { context } from "../../App";
+import { context } from "@/App";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import NoResults from "../../components/NoResults/NoResults";
-import TopResult from "../../components/TopResult/TopResult";
-import TopTracks from "../../components/TopTracks/TopTracks";
-import Cards from "../../components/Cards/Cards";
-import { callAPI } from "../../services/api";
+import NoResults from "@/components/NoResults/NoResults";
+import TopResult from "@/components/TopResult/TopResult";
+import TopTracks from "@/components/TopTracks/TopTracks";
+import Cards from "@/components/Cards/Cards";
+import { callAPI } from "@/services/api";
 
 export default function Homepage() {
     const navigate = useNavigate();
@@ -119,8 +119,7 @@ export default function Homepage() {
             }else{
                 console.log(res);
                 if(res.status === 401){
-                    localStorage.removeItem("token");
-                    navigate("/login");
+                    handleLogout();
                 }
             }
 
@@ -138,8 +137,7 @@ export default function Homepage() {
             }else{
                 console.log(res);
                 if(res.status === 401){
-                    localStorage.removeItem("token");
-                    navigate("/login");
+                    handleLogout();
                 }
             }
 

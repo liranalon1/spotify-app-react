@@ -1,8 +1,8 @@
 import './Login.scss';
 import { useEffect, useContext } from 'react';
-import { context } from "../../App";
+import { context } from "@/App";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../components/Logo/Logo";
+import Logo from "@/components/Logo/Logo";
 
 const authAPI = "https://accounts.spotify.com/authorize";
 const clientId = "9c30da69732d433cbeb1ef4871e3ba2a";
