@@ -2,7 +2,7 @@ import './Playlists.scss';
 import { useEffect, useState, useContext } from 'react';
 import { context } from "@/App";
 import { useNavigate } from 'react-router-dom';
-import { callAPI } from "@/services/api";
+import { callAPI } from "@/services";
 import Cards from "@/components/Cards/Cards";
 // const PlaylistAPI = `${baseAPI}/v1/playlists/${playlist_id}`;
 

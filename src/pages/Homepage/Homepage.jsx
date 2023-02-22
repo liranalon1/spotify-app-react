@@ -6,7 +6,7 @@ import NoResults from "@/components/NoResults/NoResults";
 import TopResult from "@/components/TopResult/TopResult";
 import TopTracks from "@/components/TopTracks/TopTracks";
 import Cards from "@/components/Cards/Cards";
-import { callAPI } from "@/services/api";
+import { callAPI } from "@/services";
 
 export default function Homepage() {
     const navigate = useNavigate();

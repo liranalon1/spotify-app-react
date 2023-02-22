@@ -1,7 +1,7 @@
 import axios from 'axios';
 const baseAPI = "https://api.spotify.com";
 
-export const callAPI = async ({url, params}) =>{
+async function callAPI({url, params}) {
     return await axios({
         url: `${baseAPI}/${url}`,
         ...params
@@ -18,3 +18,5 @@ export const callAPI = async ({url, params}) =>{
         }
     })
 }
+
+export { callAPI };
