@@ -45,32 +45,20 @@ export default function CardItem({item, index, title}) {
     function handleIsPlaying(itemType){
         switch(itemType) {
             case "album":
-                if( !isPlaying ){
-                    setIsPlaying(true);
-                    break;
-                }else if( isPlaying && currentTrack.name === item.name ){
+                if( isPlaying && currentTrack.name === item.name ){
                     setIsPlaying(false);
                     break;
-                }else if( isPlaying && currentTrack.name !== item.name ){
-                    setIsPlaying(true);
-                    break;
                 }else{
-                    setIsPlaying(!isPlaying); 
-                    break;
+                    setIsPlaying(true);
+                    break; 
                 }
             case "artist":
-                if( !isPlaying ){
-                    setIsPlaying(true);
-                    break;
-                }else if( isPlaying && currentTrack.artists?.some( artist => artist === item.name ) ){
+                if( isPlaying && currentTrack.artists?.some( artist => artist === item.name ) ){
                     setIsPlaying(false);
                     break;
-                }else if( isPlaying && currentTrack.artists?.some( artist => artist !== item.name ) ){
-                    setIsPlaying(true);
-                    break;
                 }else{
-                    setIsPlaying(!isPlaying); 
-                    break;
+                    setIsPlaying(true);
+                    break; 
                 }
             default:
         }
