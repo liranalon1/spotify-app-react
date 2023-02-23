@@ -6,7 +6,7 @@ import { faCirclePlay, faCirclePause, faShuffle, faForwardStep, faBackwardStep, 
 import { callAPI } from "@/services";
 
 export default function PlayerControls() {
-    const { token, trackIsPlaying, setTrackIsPlaying, setCurrentTrack } = useContext(context);
+    const { token, isPlaying, setIsPlaying, setCurrentTrack } = useContext(context);
 
     function handleTrack(type) {
         callAPI({
@@ -20,7 +20,7 @@ export default function PlayerControls() {
         })
         .then(() => {
             getCurrentTrack();
-            setTrackIsPlaying(true);
+            setIsPlaying(true);
         });
     }
 
@@ -48,7 +48,7 @@ export default function PlayerControls() {
     }
 
     function handlePlayingStatus() {
-        const currentState = trackIsPlaying ? "pause" : "play";
+        const currentState = isPlaying ? "pause" : "play";
         callAPI({
             url: `v1/me/player/${currentState}`, 
             params: {
@@ -59,7 +59,7 @@ export default function PlayerControls() {
             }         
         })
         .then((res) => {
-            setTrackIsPlaying(!trackIsPlaying);
+            setIsPlaying(!isPlaying);
         });
     }
 
@@ -72,7 +72,7 @@ export default function PlayerControls() {
                 <a onClick={() => handleTrack("previous")}><FontAwesomeIcon icon={faBackwardStep} /></a>
             </div>
             <div className="state">
-                { trackIsPlaying ? 
+                { isPlaying ? 
                 <a onClick={handlePlayingStatus}><FontAwesomeIcon icon={faCirclePause} /></a>
                 : 
                 <a onClick={handlePlayingStatus}><FontAwesomeIcon icon={faCirclePlay} /></a>

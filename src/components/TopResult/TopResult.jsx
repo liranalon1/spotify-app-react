@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 export default function TopResult({topTrack}) {
-    const { currentTrack, setCurrentTrack, trackIsPlaying, setTrackIsPlaying } = useContext(context);
-    const itemIsActive = currentTrack.id === topTrack?.id && trackIsPlaying;
+    const { currentTrack, setCurrentTrack, isPlaying, setIsPlaying } = useContext(context);
+    const itemIsActive = currentTrack.id === topTrack?.id && isPlaying;
 
     function handleCurrentTrack({id, name, artists, image}) {
         setCurrentTrack({
@@ -16,7 +16,7 @@ export default function TopResult({topTrack}) {
             image: image
         });
 
-        itemIsActive ? setTrackIsPlaying(false) : setTrackIsPlaying(true);
+        itemIsActive ? setIsPlaying(false) : setIsPlaying(true);
     }
 
     return (
