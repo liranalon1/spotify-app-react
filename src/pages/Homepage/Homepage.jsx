@@ -115,7 +115,9 @@ export default function Homepage() {
             params: params
         }).then((res) => {
             if(res.status === 200){
-               setAlbums(res.data.items);
+                const albums = res.data.items
+                const uniqueAlbums = [...new Map(albums.map(album => [album.name, album])).values()]; // removing duplicates Albums
+               setAlbums(uniqueAlbums);
             }else{
                 console.log(res);
                 if(res.status === 401){
