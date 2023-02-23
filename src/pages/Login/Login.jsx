@@ -6,7 +6,7 @@ import Logo from "@/components/Logo/Logo";
 
 const authAPI = "https://accounts.spotify.com/authorize";
 const clientId = "9c30da69732d433cbeb1ef4871e3ba2a";
-const redirectUri = "http://127.0.0.1:80/spotify-app";
+const redirectUri = "http://localhost/spotify-app";
 const scopes = [
     "playlist-read-private", 
     "user-follow-read", 
