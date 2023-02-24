@@ -8,8 +8,8 @@ export default function Cards({title, items}) {
             <h2 className="list-title">{title}</h2>
             <div className="cards">
                 {
-                    items.map((item, index) => {
-                        return <CardItem item={item} index={index} title={title} key={item.id}/>
+                    items.map((item) => {
+                        return <CardItem item={item} key={item.id}/>
                     })            
                 }
             </div>

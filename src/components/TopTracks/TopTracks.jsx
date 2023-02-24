@@ -1,5 +1,7 @@
 import "./TopTracks.scss";
 import dayjs from 'dayjs';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 export default function TopTracks({topTracks}) {
     return (
@@ -12,13 +14,11 @@ export default function TopTracks({topTracks}) {
                         <div className="track-details flex">
                             <div className="track-img">
                                 <img src={item.album.images[2]?.url} width="40" height="40" alt={item.name} />
-                                <button>
-                                    <svg role="img" height="16" width="16" viewBox="0 0 24 24"><path fill="#fff" d="M7.05 3.606l13.49 7.788a.7.7 0 010 1.212L7.05 20.394A.7.7 0 016 19.788V4.212a.7.7 0 011.05-.606z"></path></svg>
-                                </button>
+                                <FontAwesomeIcon icon={faPlay} color="#fff" width="16" height="16"/>
                             </div>
                             <div className="track-details-bottom flex">
                                 <div className="track-name">{item.name}</div>
-                                <div className="track-artists">{item.artists.map( artist => artist.name ).join(', ')}</div>
+                                <div className="track-artists">{item.artists.map( artist => artist.name ).join(", ")}</div>
                             </div>
                         </div>
                         <div className="track-duration">

@@ -155,7 +155,7 @@ export default function Homepage() {
         } else{
             return <>
             <div className="top-results-wrapper">
-                <TopResult topTrack={topTracks[0]} />
+                <TopResult item={topTracks[0]} />
                 <TopTracks topTracks={topTracks} />
             </div>
             <Cards title="Albums" items={albums} />

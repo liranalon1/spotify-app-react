@@ -29,6 +29,9 @@ export default function UserMenu() {
                 setUserProfile(res.data);
             }else{
                 console.log(res);
+                if(res.status === 401){
+                    handleLogout();
+                }
             }
         });
     }
