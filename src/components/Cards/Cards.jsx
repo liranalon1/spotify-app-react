@@ -9,7 +9,7 @@ export default function Cards({title, items}) {
             <div className="cards">
                 {
                     items.map((item) => {
-                        return <CardItem item={item} key={item.id}/>
+                        return <CardItem item={item} cardSection="default" key={item.id}/>
                     })            
                 }
             </div>

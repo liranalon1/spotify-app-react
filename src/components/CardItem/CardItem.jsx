@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { callAPI } from "@/services";
 
-export default function CardItem({item}) {
+export default function CardItem({item, cardSection}) {
     const { token, currentTrack, setCurrentTrack, isPlaying, setIsPlaying } = useContext(context);
     
     function handleCurrentTrack(item) {
@@ -102,7 +102,7 @@ export default function CardItem({item}) {
 
     return (
         <>
-        <div className={`card ${itemIsActive(item.type) ? "active" : ""}`}>
+        <div className={`card ${itemIsActive(item.type) ? "active" : ""} ${cardSection}-card`}>
             <div className="cover">
                 <img 
                     className={`type-${item.type}`} 
@@ -111,13 +111,13 @@ export default function CardItem({item}) {
                     height="100%" 
                     alt={item.name} 
                 />
-                <div className="circle-icon" onClick={() => handleCurrentTrack(item)}>
+                <button className="play-btn" onClick={() => handleCurrentTrack(item)}>
                     { itemIsActive(item.type) ? 
-                        <FontAwesomeIcon icon={faPause} color="#121212" width="24" height="24" /> 
+                        <FontAwesomeIcon icon={faPause} width="24" height="24" /> 
                         : 
-                        <FontAwesomeIcon icon={faPlay} color="#121212" width="24" height="24"/> 
+                        <FontAwesomeIcon icon={faPlay} width="24" height="24"/> 
                     }
-                </div>
+                </button>
             </div>
             <div className="card-content">
                 <h4 className="text-elipsis">{item.name}</h4>

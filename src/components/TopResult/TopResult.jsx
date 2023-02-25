@@ -6,7 +6,7 @@ export default function TopResult({item}) {
         item !== undefined ?
         <div className="top-result">
             <h2 className="list-title">Top Result</h2>
-            <CardItem item={item} key={item.id}/>                  
+            <CardItem item={item} cardSection="top-result" key={item.id}/>
         </div>
         :
         null

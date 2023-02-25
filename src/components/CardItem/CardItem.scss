@@ -1,4 +1,4 @@
-.card{
+.card:not(.top-tracks-card){
     border-radius: 5px;
     padding: 15px;
     overflow: hidden;
@@ -9,7 +9,7 @@
     &:hover, &.active {
         background-color: #282828;
 
-        .cover .circle-icon {
+        .cover .play-btn {
             opacity: 1;
         }
     }
@@ -31,7 +31,7 @@
             }
         }
 
-        .circle-icon {
+        .play-btn {
             position: absolute;
             bottom: 5px;
             right: 5px;
@@ -45,6 +45,10 @@
             box-shadow: 0 4px 16px -4px #121212;
             opacity: 0;
             transition: 0.4s, transform 0.1s;
+
+            svg path{
+                fill: #121212;
+            }
         }
     }
 
