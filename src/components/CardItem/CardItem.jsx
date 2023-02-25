@@ -10,16 +10,17 @@ export default function CardItem({item, cardSection}) {
     const { token, currentTrack, setCurrentTrack, isPlaying, setIsPlaying } = useContext(context);
     
     function handleCurrentTrack(item) {
+        const apiParams = {
+            method: "get",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
         switch(item.type){
             case "artist":
                 callAPI({
                     url: `v1/artists/${item.id}/top-tracks?include_groups=album&market=US&limit=50`, 
-                    params: {
-                        method: "get",
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    }
+                    params: apiParams
                 }).then((res) => {
                     if(res.status === 200){
                         const topTrackItem = res.data.tracks[0];
@@ -32,6 +33,22 @@ export default function CardItem({item, cardSection}) {
                     }
                 }); 
                 break;
+            case "playlist":
+                callAPI({
+                    url: `v1/playlists/${item.id}/tracks`, 
+                    params: apiParams
+                }).then((res) => {
+                    if(res.status === 200){
+                        const topTrackItem = res.data.items[0].track;
+                        setCurrentTrack({
+                            id: topTrackItem.id,
+                            name: topTrackItem.name,
+                            artists: topTrackItem.artists.map(artist => artist.name),
+                            image: topTrackItem.album.images[2].url
+                        });
+                    }
+                }); 
+                break;                
             case "album":
                 setCurrentTrack({
                     id: item.id,
