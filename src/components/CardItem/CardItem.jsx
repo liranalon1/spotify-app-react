@@ -82,9 +82,9 @@ export default function CardItem({item, cardSection}) {
 
     function handleCoverSrc() {
         if( item.type === "track" ){
-            return item.album.images[0].url;
+            return item.album.images[0]?.url;
         }else{
-            return item.images[0].url;
+            return item.images[0]?.url;
         }
     }
 
