@@ -11,6 +11,6 @@ export default defineConfig({
   server: {
     port: 80,
     host: '127.0.0.1',
-    open: 'http://localhost/spotify-app',
+    open: 'http://127.0.0.1:80/spotify-app',
   },
 })
