@@ -9,9 +9,9 @@ export default defineConfig({
   },
   plugins: [react()],
   server: {
-    port: 8000,
+    port: 3000,
     strictPort: true, //  Set to true to exit if port is already in use
     host: '127.0.0.1',
-    open: 'http://127.0.0.1:8000',
+    open: 'http://localhost:3000',
   },
 })
