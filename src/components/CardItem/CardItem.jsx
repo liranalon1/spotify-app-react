@@ -7,7 +7,7 @@ import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 import { callAPI } from "@/services";
 
 export default function CardItem({item, cardSection}) {
-    const { token, currentTrack, setCurrentTrack, isPlaying, setIsPlaying } = useContext(context);
+    const { token, currentTrack, setCurrentTrack, cardIsActive, setCardIsActive } = useContext(context);
     
     function handleCurrentTrack(item) {
         const apiParams = {
@@ -55,7 +55,6 @@ export default function CardItem({item, cardSection}) {
                 }); 
                 break;                
             case "album":
-            case "track":
                 setCurrentTrack({
                     id: item.id,
                     name: item.name,
@@ -64,36 +63,46 @@ export default function CardItem({item, cardSection}) {
                     uri: item.uri,
                     type: item.type,
                 });
+                break;                
+            case "track":
+                setCurrentTrack({
+                    id: item.id,
+                    name: item.name,
+                    artists: item.artists.map(artist => artist.name),
+                    image: item.album.images[2].url,
+                    uri: item.uri,
+                    type: item.type,
+                });
                 break;
             default:              
         }
 
-        handleIsPlaying(item.type);
+        handleCardIsActive(item.type);
     }
 
-    function handleIsPlaying(itemType){
+    function handleCardIsActive(itemType){
         switch(itemType) {
             case "artist":
-                if( isPlaying && currentTrack.artists?.some( artist => artist === item.name ) ){
-                    setIsPlaying(false);
+                if( cardIsActive && currentTrack.artists?.some( artist => artist === item.name ) ){
+                    setCardIsActive(false);
                 }else{
-                    setIsPlaying(true);
+                    setCardIsActive(true);
                 }
                 break;            
             default:
-                if( isPlaying && currentTrack.name === item.name ){
-                    setIsPlaying(false);
+                if( cardIsActive && currentTrack.name === item.name ){
+                    setCardIsActive(false);
                 }else{
-                    setIsPlaying(true);
+                    setCardIsActive(true);
                 }
         }
     }
 
     function itemIsActive(itemType) {
         if(itemType === "artist"){
-            return isPlaying && currentTrack.artists?.some( artist => artist === item.name );
+            return cardIsActive && currentTrack.artists?.some( artist => artist === item.name );
         }else{
-            return isPlaying && currentTrack.name === item.name;
+            return cardIsActive && currentTrack.name === item.name;
         }
     }
 

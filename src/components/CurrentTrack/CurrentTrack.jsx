@@ -5,7 +5,7 @@ import { context } from "@/App";
 import { callAPI } from "@/services";
 
 export default function CurrentTrack() {
-    const { token, setToken, currentTrack, setCurrentTrack, isPlaying, setIsPlaying } = useContext(context);
+    const { token, setToken, currentTrack, setCurrentTrack, cardIsActive, setCardIsActive } = useContext(context);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -30,7 +30,7 @@ export default function CurrentTrack() {
         })
         .then((res) => {
             if(res.data !== ""){
-                setIsPlaying(res.data.is_playing);
+                setCardIsActive(res.data.is_playing);
                 const {item} = res.data;
                 setCurrentTrack({
                     id: item.id,

@@ -5,10 +5,10 @@ import CardItem from "@/components/CardItem/CardItem";
 import dayjs from 'dayjs';
 
 export default function TopTracks({topTracks}) {
-    const { currentTrack, isPlaying } = useContext(context);
+    const { currentTrack, cardIsActive } = useContext(context);
 
     function itemIsActive(item) {
-        return isPlaying && currentTrack.name === item.name;
+        return cardIsActive && currentTrack.name === item.name;
     }
 
     return (
@@ -16,7 +16,7 @@ export default function TopTracks({topTracks}) {
         <div className="top-tracks">
             <h2 className="list-title">Top Tracks</h2>
             {
-                topTracks.slice(0, 5).map((item, index) => {
+                topTracks.slice(0, 5).map((item) => {
                     // return <div className="top-tracks-row flex" key={item.key}>
                     return <div className={`top-tracks-row flex ${itemIsActive(item) ? "active" : ""}`} key={item.key}>
                         <CardItem item={item} cardSection="top-tracks" key={item.id}/> 

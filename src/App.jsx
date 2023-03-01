@@ -19,8 +19,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [currentTrack, setCurrentTrack] = useState("");
-  const [isPlaying, setIsPlaying] = useState(false);
-  
+  const [cardIsActive, setCardIsActive] = useState(false);
   const searchQuery = useDebounce(query, 500)
 
   // useEffect(() => {
@@ -45,8 +44,8 @@ export default function App() {
           setToken,
           currentTrack,
           setCurrentTrack,
-          isPlaying,
-          setIsPlaying
+          cardIsActive,
+          setCardIsActive
         }
       }>
         <themeContext.Provider value={{theme, setTheme}}>

@@ -6,15 +6,15 @@ import { callAPI } from "@/services";
 import SpotifyPlayer from 'react-spotify-web-playback';
 
 export default function PlayerControls() {
-    const { token, isPlaying, setIsPlaying, currentTrack, setCurrentTrack } = useContext(context);
+    const { token, cardIsActive, setCardIsActive, currentTrack, setCurrentTrack } = useContext(context);
     const [playerIsReady, setPlayerIsReady] = useState(false);
     const [playerIsPlaying, setPlayerIsPlaying] = useState(false);
-    const [playerCurrentUri, setPlayerCurrentUri] = useState("");
+    const [playerCurrentID, setPlayerCurrentID] = useState("");
 
     useEffect(() => {
         if(currentTrack.uri){
-            if(isPlaying){
-                if(playerCurrentUri !== "" && playerCurrentUri !== currentTrack.uri){
+            if(cardIsActive){
+                if(playerCurrentID !== "" && playerCurrentID !== currentTrack.id){
                     setPlayerIsReady(false);
                     setTimeout(() => {
                         setPlayerIsReady(true);
@@ -54,8 +54,6 @@ export default function PlayerControls() {
                 image: recentlyPlayedTrack.album.images[2].url,
                 uri: uriLists,
             });
-            
-            // setPlayerIsPlaying(true)
         }); 
     }
 
@@ -69,14 +67,14 @@ export default function PlayerControls() {
             hideAttribution={true}
             initialVolume={0.5}
             callback={state => {
-                if(state.track.uri !== "") {
-                    setPlayerCurrentUri(state.track.uri) 
+                if(state.track.id !== "") {
+                    setPlayerCurrentID(state.track.id);
                     if(!state.isPlaying) {
                         setPlayerIsPlaying(false);
-                        setIsPlaying(false);
+                        setCardIsActive(false);
                     }else{
                         setPlayerIsPlaying(true);
-                        setIsPlaying(true);
+                        setCardIsActive(true);
                     }
                 }else{}
             }}
