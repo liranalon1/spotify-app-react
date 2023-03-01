@@ -29,7 +29,7 @@ export default function CardItem({item, cardSection}) {
                             name: topTrackItem.name,
                             artists: topTrackItem.artists.map(artist => artist.name),
                             image: topTrackItem.album.images[2].url,
-                            uri: topTrackItem.uri,
+                            uri: res.data.tracks.map(track => track.uri),
                             type: item.type,
                         });
                     }
@@ -42,18 +42,20 @@ export default function CardItem({item, cardSection}) {
                 }).then((res) => {
                     if(res.status === 200){
                         const topTrackItem = res.data.items[0].track;
+                        const uriLists = res.data.items.map(({track}) => track.uri);
                         setCurrentTrack({
                             id: topTrackItem.id,
                             name: topTrackItem.name,
                             artists: topTrackItem.artists.map(artist => artist.name),
                             image: topTrackItem.album.images[2].url,
-                            uri: topTrackItem.uri,
+                            uri: uriLists,
                             type: item.type,
                         });
                     }
                 }); 
                 break;                
             case "album":
+            case "track":
                 setCurrentTrack({
                     id: item.id,
                     name: item.name,
@@ -62,17 +64,7 @@ export default function CardItem({item, cardSection}) {
                     uri: item.uri,
                     type: item.type,
                 });
-                break;  
-            case "track":
-                setCurrentTrack({
-                    id: item.id,
-                    name: item.name,
-                    artists: item.artists.map(artist => artist.name),
-                    image: item.album.images[2].url,
-                    uri: item.uri,
-                    type: item.type,
-                });
-                break;  
+                break;
             default:              
         }
 

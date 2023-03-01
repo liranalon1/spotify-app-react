@@ -30,13 +30,13 @@ export default function PlayerControls() {
                 setPlayerIsReady(true)
             }, 10) 
         }else{
-            GetRecentlyPlayedTrack();
+            GetRecentlyPlayedTracks();
         } 
     },[currentTrack])
 
-    function GetRecentlyPlayedTrack() {
+    function GetRecentlyPlayedTracks() {
         callAPI({
-            url: `v1/me/player/recently-played?limit=1`, 
+            url: `v1/me/player/recently-played`, 
             params: {
                 method: "get",
                 headers: {
@@ -45,13 +45,14 @@ export default function PlayerControls() {
             }
         })
         .then(({data}) => {
-            const lastTrack = data.items[0].track;
+            const recentlyPlayedTrack = data.items[0].track;
+            const uriLists = data.items.map(({track}) => track.uri);
             setCurrentTrack({
-                id: lastTrack.id,
-                name: lastTrack.name,
-                artists: lastTrack.artists.map(artist => artist.name),
-                image: lastTrack.album.images[2].url,
-                uri: lastTrack.uri,
+                id: recentlyPlayedTrack.id,
+                name: recentlyPlayedTrack.name,
+                artists: recentlyPlayedTrack.artists.map(artist => artist.name),
+                image: recentlyPlayedTrack.album.images[2].url,
+                uri: uriLists,
             });
             
             // setPlayerIsPlaying(true)
@@ -63,7 +64,7 @@ export default function PlayerControls() {
         <SpotifyPlayer
             name={"Spotify Web Player app"}
             token={token}
-            uris={currentTrack.uri ? [currentTrack.uri]: []}
+            uris={currentTrack.uri ? currentTrack.uri: []}
             play={playerIsPlaying}
             hideAttribution={true}
             initialVolume={0.5}
