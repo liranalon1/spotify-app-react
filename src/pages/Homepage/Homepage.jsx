@@ -26,16 +26,14 @@ export default function Homepage() {
     useEffect(() => {
         if( !token ){
             handleLogout();
-        }
-    }, [token]);
-
-    useEffect(() => {
-        if(searchQuery === ""){
-            getUsersTopArtists({type:"artists", params: apiParams})
         }else{
-            handleSearch();
+            if(searchQuery === ""){
+                getUsersTopArtists({type:"artists", params: apiParams})
+            }else{
+                handleSearch();
+            }
         }
-    }, [searchQuery]);
+    }, [token, searchQuery]);
 
     function handleLogout() {
         localStorage.removeItem("token");

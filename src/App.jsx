@@ -18,7 +18,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [currentTrack, setCurrentTrack] = useState({});
+  const [currentTrack, setCurrentTrack] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
   
   const searchQuery = useDebounce(query, 500)

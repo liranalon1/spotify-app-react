@@ -28,7 +28,9 @@ export default function CardItem({item, cardSection}) {
                             id: topTrackItem.id,
                             name: topTrackItem.name,
                             artists: topTrackItem.artists.map(artist => artist.name),
-                            image: topTrackItem.album.images[2].url
+                            image: topTrackItem.album.images[2].url,
+                            uri: topTrackItem.uri,
+                            type: item.type,
                         });
                     }
                 }); 
@@ -44,7 +46,9 @@ export default function CardItem({item, cardSection}) {
                             id: topTrackItem.id,
                             name: topTrackItem.name,
                             artists: topTrackItem.artists.map(artist => artist.name),
-                            image: topTrackItem.album.images[2].url
+                            image: topTrackItem.album.images[2].url,
+                            uri: topTrackItem.uri,
+                            type: item.type,
                         });
                     }
                 }); 
@@ -54,7 +58,9 @@ export default function CardItem({item, cardSection}) {
                     id: item.id,
                     name: item.name,
                     artists: item.artists.map(artist => artist.name),
-                    image: item.images[2].url
+                    image: item.images[2].url,
+                    uri: item.uri,
+                    type: item.type,
                 });
                 break;  
             case "track":
@@ -62,7 +68,9 @@ export default function CardItem({item, cardSection}) {
                     id: item.id,
                     name: item.name,
                     artists: item.artists.map(artist => artist.name),
-                    image: item.album.images[2].url
+                    image: item.album.images[2].url,
+                    uri: item.uri,
+                    type: item.type,
                 });
                 break;  
             default:              
