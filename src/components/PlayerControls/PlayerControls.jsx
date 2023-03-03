@@ -7,7 +7,7 @@ import SpotifyPlayer from 'react-spotify-web-playback';
 export default function PlayerControls() {
     const { token, cardIsActive, setCardIsActive, currentTrack, setCurrentTrack } = useContext(context);
     const [playerIsReady, setPlayerIsReady] = useState(false);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [playerIsPlaying, setPlayerIsPlaying] = useState(false);
     const [playerCurrentID, setPlayerCurrentID] = useState("");
 
     useEffect(() => {
@@ -17,10 +17,10 @@ export default function PlayerControls() {
                     setPlayerIsReady(false);
                     setTimeout(() => {
                         setPlayerIsReady(true);
-                        setIsPlaying(true);
+                        setPlayerIsPlaying(true);
                     }, 10);
-                }else setIsPlaying(true);
-            }else setIsPlaying(false);
+                }else setPlayerIsPlaying(true);
+            }else setPlayerIsPlaying(false);
             setTimeout(() => {
                 setPlayerIsReady(true)
             }, 10) 
@@ -57,17 +57,17 @@ export default function PlayerControls() {
             name={"Spotify Web Player app"}
             token={token}
             uris={currentTrack.uri ? currentTrack.uri: []}
-            play={isPlaying}
+            play={playerIsPlaying}
             hideAttribution={true}
             initialVolume={0.5}
             callback={state => {
                 if(state.track.id !== "") {
                     setPlayerCurrentID(state.track.id);
                     if(!state.isPlaying) {
-                        setIsPlaying(false);
+                        setPlayerIsPlaying(false);
                         setCardIsActive(false);
                     }else{
-                        setIsPlaying(true);
+                        setPlayerIsPlaying(true);
                         setCardIsActive(true);
                     }
                 }else{}
