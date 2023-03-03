@@ -11,7 +11,7 @@ export default function PlayerControls() {
     const [playerCurrentID, setPlayerCurrentID] = useState("");
 
     useEffect(() => {
-        if(currentTrack.uri !== ""){
+        if(currentTrack.uri){
             if(cardIsActive){
                 if(playerCurrentID !== "" && playerCurrentID !== currentTrack.id){
                     setPlayerIsReady(false);
