@@ -1,10 +1,11 @@
 # spotify-app-react
 
-
-``` bash
+```bash
 # install dependencies
 npm install
 
 #
 npm run dev
 ```
+
+![Timeline](assets/spotify_scrrenshot.jpg)

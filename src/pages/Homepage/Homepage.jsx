@@ -28,7 +28,7 @@ export default function Homepage() {
             handleLogout();
         }else{
             if(searchQuery === ""){
-                getUsersTopArtists({type:"artists", params: apiParams})
+                getUsersTopArtists(apiParams)
             }else{
                 handleSearch();
             }
@@ -46,10 +46,10 @@ export default function Homepage() {
         getArtistID({value: searchQuery, params: apiParams});
     }
 
-    function getUsersTopArtists({type, params}){
+    function getUsersTopArtists(apiParams){
         callAPI({
-            url: `v1/me/top/${type}`, 
-            params: params
+            url: `v1/me/top/artists?limit=8`, 
+            params: apiParams
         })
         .then((res) => {
             if(res.status === 200){

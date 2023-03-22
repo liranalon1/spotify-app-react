@@ -62,7 +62,7 @@ export default  function Playlists() {
     return (
         <div id="playlists-page">
             <div className="container">
-                <Cards title="Playlists" items={playListsData} />
+                <Cards title="Your Playlists" items={playListsData} />
             </div>
         </div>
     )
