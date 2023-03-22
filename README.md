@@ -8,4 +8,4 @@ npm install
 npm run dev
 ```
 
-(assets/spotify_scrrenshot.jpg)
+![screenshot](assets/spotify_scrrenshot.jpg)
